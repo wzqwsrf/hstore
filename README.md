@@ -1,17 +1,1 @@
-# 启动方式
-
-首次clone
-
-直接test
-$ git clone git@github.com:wzqwsrf/hstore.git
-$ cd hstore
-$ tools/with_venv.sh python -m testtools.run tests.unit.test_user_service
-
-pycharm test
-修改绝对路径为相对路径.
-注掉 CONF(['--config-file', 'tests/etc/unittest.ini'])
-使用 CONF(['--config-file', '../etc/unittest.ini'])
-$ python tools/install_venv.py
-ctrl+shift+F10直接test
-
-
+<pre style="background-color:#2b2b2b;color:#a9b7c6;font-family:'Source Code Pro';font-size:16pt;"><span style="color:#cc7832;font-weight:bold;"># </span><span style="color:#cc7832;font-weight:bold;font-family:'AR PL UKai HK';">启动方式<br /></span><span style="color:#cc7832;font-weight:bold;font-family:'AR PL UKai HK';"><br /></span><span style="font-family:'AR PL UKai CN';">首次</span>clone<br /><br /><span style="font-family:'AR PL UKai CN';">直接</span>test<br />$ git clone git@github.com:wzqwsrf/hstore.git<br />$ cd hstore<br />$ tools/with<span style="color:#6a8759;">_</span>venv.sh python -m testtools.run tests.unit.test<span style="color:#6a8759;">_</span>user<span style="color:#6a8759;">_</span>service<br /><br />pycharm test<br /><span style="font-family:'AR PL UKai CN';">修改绝对路径为相对路径</span>.<br /><span style="font-family:'AR PL UKai CN';">注掉</span> CONF(<span style="color:#6a8759;">['--config-file', 'tests/etc/unittest.ini']</span>)<br /><span style="font-family:'AR PL UKai CN';">使用</span> CONF(<span style="color:#6a8759;">['--config-file', '../etc/unittest.ini']</span>)<br />$ python tools/install<span style="color:#6a8759;">_</span>venv.py<br />ctrl+shift+F10<span style="font-family:'AR PL UKai CN';">直接</span>test<br /><br /><br /></pre>
