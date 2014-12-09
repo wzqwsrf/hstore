@@ -18,10 +18,25 @@ def get_user_all():
         return session.query(UserHstore).all()
 
 
-def get_user_by_key(key):
+def get_user_keys():
     session = get_session_not_commit()
     with session.begin(subtransactions=True):
-        return session.query(UserHstore).filter(UserHstore.info.has_key(key)).first()
+        return session.query(UserHstore.info).filter(UserHstore.info.keys()).all()
+
+
+def user_contains_key_value(key, value):
+    session = get_session_not_commit()
+    with session.begin(subtransactions=True):
+        return session.query(UserHstore).filter(UserHstore.info.contains({key: value})).one()
+
+
+def user_constains_key(key):
+    session = get_session_not_commit()
+    with session.begin(subtransactions=True):
+        user = session.query(UserHstore).filter(UserHstore.info.has_key(key)).first()
+        if user:
+            return True
+        return False
 
 
 def get_user_by_key_equal_value(key, value):
@@ -41,21 +56,16 @@ def edit_user_by_key_value(key, value1, value2):
 def add_user_new_key_value_by_name(key, value, name):
     session = get_session()
     with session.begin(subtransactions=True):
-        userHstore = session.query(UserHstore).filter(UserHstore.info['name'] == name).first()
-        info = userHstore.info
-        info[key] = value
-        userHstore.info = info
-        session.add(userHstore)
+        session.query(UserHstore).filter(UserHstore.info['name'] == name).update(
+            {UserHstore.info: UserHstore.info + {key: value, }, },
+            synchronize_session="fetch")
 
 
-def del_user_key_value_by_name(key, value, name):
+def del_user_by_key(key1, key2):
     session = get_session()
     with session.begin(subtransactions=True):
-        userHstore = session.query(UserHstore).filter(UserHstore.info['name'] == name).first()
-        info = userHstore.info
-        info[key] = value
-        userHstore.info = info
-        session.add(userHstore)
+        for user in session.query(UserHstore).filter(UserHstore.info.has_key(key1)):
+            del user.info[key2]
 
 
 
