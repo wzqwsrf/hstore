@@ -1,3 +1,4 @@
 oslo.db>0.1
 oslo.config
 sqlalchemy
+psycopg2

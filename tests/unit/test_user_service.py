@@ -47,8 +47,8 @@ class UserData(DataSet):
 class DBConnectionFixture(fixtures.Fixture):
     def setUp(self):
         super(DBConnectionFixture, self).setUp()
-        # CONF(['--config-file', 'tests/etc/unittest.ini'])
-        CONF(['--config-file', '../etc/unittest.ini'])
+        CONF(['--config-file', 'tests/etc/unittest.ini'])
+        # CONF(['--config-file', '../etc/unittest.ini'])
 
 
 class DBFixture(fixtures.Fixture):
