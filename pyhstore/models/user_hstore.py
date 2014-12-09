@@ -12,7 +12,10 @@ Base = declarative_base()
 
 
 class UserHstore(Base):
+
     __tablename__ = 'users'
     id = Column(Integer, primary_key=True)
     info = Column(MutableDict.as_mutable(HSTORE))
 
+    def __repr__(self):
+        return "<Player('%s','%s')>" % (self.id, self.info)

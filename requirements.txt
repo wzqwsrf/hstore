@@ -1,8 +1,3 @@
-qg.core
-qg.web
-qg.db
+oslo.db>0.1
+oslo.config
 sqlalchemy
-openpyxl
-psycopg2
-setuptools
-requests
