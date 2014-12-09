@@ -2,11 +2,12 @@
 # -*- coding: utf-8 -*-
 
 from oslo.config import cfg
+from oslo.db import options
 from testtools import TestCase
 from fixture import DataSet, SQLAlchemyFixture
 import fixtures
 
-from pyhstore.db.db_connect import get_engine
+from pyhstore.db.db_connect import get_engine, get_session
 from pyhstore.services.user_service import (add_user,
                                             get_user_by_key_equal_value,
                                             edit_user_by_key_value,
@@ -15,13 +16,20 @@ from pyhstore.services.user_service import (add_user,
 from pyhstore.models.user_hstore import UserHstore
 
 CONF = cfg.CONF
+CONF.register_opts(options.database_opts, 'database')
 
 
 class UserData(DataSet):
-    class user:
+
+    class user1:
         id = 100
         info = dict(name='yazhou.liu',
                     company='lashou')
+
+    class user2:
+        id = 100
+        info = dict(name='zhenqing.wang',
+                    company='qunar')
 
 
 class DBConnectionFixture(fixtures.Fixture):
@@ -41,6 +49,7 @@ class DBFixture(fixtures.Fixture):
         self.data = self.dbfixture.data(UserData)
         self.data.setup()
         self.addCleanup(self.data.teardown)
+        self.data.teardown('delete from users')
 
 
 class TestUser(TestCase):

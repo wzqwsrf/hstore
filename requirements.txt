@@ -1,0 +1,8 @@
+qg.core
+qg.web
+qg.db
+sqlalchemy
+openpyxl
+psycopg2
+setuptools
+requests
