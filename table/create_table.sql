@@ -1,6 +1,6 @@
 create database hstore;
 create extension hstore;
-create table(
+create table users(
 id serial,
 info hstore
 );
